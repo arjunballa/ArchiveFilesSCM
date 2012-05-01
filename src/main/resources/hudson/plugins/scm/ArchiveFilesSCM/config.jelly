@@ -1,0 +1,43 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry title="Clear workspace before copying" help="/plugin/ArchiveFilesSCM/clear.html">
+        <f:checkbox name="archive_files_scm_clear" checked="${h.defaultToTrue(scm.clearWorkspace)}"/>
+    </f:entry>
+    <f:entry title="URLs to get source code">
+        <f:repeatable var="tuple" items="${scm.urls}" noAddButton="true" minimum="1">
+            <table width="100%">
+                <!--
+                - user name and password are mandatory fields only if secured is checked
+                -->
+                <!--
+                <f:entry title="Secured" help="/plugin/ArchiveFilesSCM/secured.html">
+                <f:checkbox name="archive_files_scm_secured" checked="${h.defaultToTrue(tuple.secured)}"/>
+                </f:entry>
+                -->
+                <f:entry title="User Name" help="/plugin/ArchiveFilesSCM/username.html">
+                    <f:textbox name="archive_files_scm_username" value="${h.defaulted(tuple.username,'')}"/>
+                </f:entry>
+                <f:entry title="Password" help="/plugin/ArchiveFilesSCM/password.html">
+                    <f:password name="archive_files_scm_password" value="${h.defaulted(tuple.password,'')}"/>
+                </f:entry>
+                <!--
+                below is the attribute to validate if given url is valid and live url. we need to add doUrlCheck method for this to work.
+                checkUrl="'${rootURL}/scm/ArchiveFilesSCM/urlCheck?value='+encode(this.value)+'&amp;secured='+this.form.archive_files_scm_secured.checked+'&amp;username='+encode(this.form.archive_files_scm_username.value)+'&amp;password='+encode(this.form.archive_files_scm_password.value)"
+                Only required validation is performed on url and url validation is not performed because of caching of
+                user name and password by java.net.URLConnection object bug in JDK(say if user gives incorrect 
+				username/password and when validation is performed, that username/password cached and even 
+				if user gives correct password next time java.net.URLConnection uses cached password only.
+				Cache is cleared only when jenkins is restarted.)
+                -->
+                <f:entry title="URL" help="/plugin/ArchiveFilesSCM/url.html">
+                    <f:textbox name="archive_files_scm_url" value="${tuple.urlString}" checkUrl="'${rootURL}/scm/ArchiveFilesSCM/requiredCheck?value='+encode(this.value)"/>
+                </f:entry>
+                <f:entry>
+                    <div align="right">
+                        <input type="button" value="Add more" class="repeatable-add show-if-last"/>
+                        <input type="button" value="Delete" class="repeatable-delete show-if-not-only" style="margin-left: 1em;"/>
+                    </div>
+                </f:entry>
+            </table>
+        </f:repeatable>
+    </f:entry>
+</j:jelly>

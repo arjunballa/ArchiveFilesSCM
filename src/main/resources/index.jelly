@@ -1,0 +1,28 @@
+<div>
+    ArchiveFilesSCM plugin for Jenkins supports checkout, extraction and also pooling of archives files.<br/>
+    The current version supports extraction of zip,tar,gz,jar,war,ear files.<br/>
+    The type detection of archive file is based on file name (i.e URL must end with zip,tar,tar.gz,jar,war,ear).<br/>
+    Polling is done by checking the last-modified header returned when connecting to a URL.<br/>
+    If the type is unknown the plugin will simply copy the file to workspace.
+    <h3>Features</h3>
+    <ul>
+        <li>
+            Supports Basic Authentication
+        </li>
+        <li>
+            Supports Connection through Proxy
+        </li>
+        <li>
+            Supports running on slave
+        </li>
+        <li>
+            Supports http:// and file:// portocols<br/>
+            e.g - URL can be
+            <ul>
+                <li>http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-3.0.4-bin.tar.gz</li>
+                <li>file:///C:/Arjun/felix.jar (On Windows)</li>
+                <li>file:///home/arjun/felix.jar (On Unix/Linux)</li>
+            </ul>
+        </li>
+    </ul>
+</div>
