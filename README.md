@@ -18,11 +18,12 @@ Plugin
 
 - supports running on slave
 
-- supports http:// and file:// protocols
-e.g - URL can be
+- supports http:// and file:// protocols e.g - URL can be
+                                             
+* * http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-3.0.4-bin.tar.gz
 
-http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-3.0.4-bin.tar.gz
-file:///C:/Arjun/felix.jar (On Windows)
-file:///home/arjun/felix.jar (On Unix/Linux)
+* * file:///C:/Arjun/felix.jar (On Windows)
+
+* * file:///home/arjun/felix.jar (On Unix/Linux)
 
 Note: If the type is unknown the plugin will simply copy the file to workspace
